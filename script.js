@@ -1,18 +1,25 @@
-fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer YOUR_API_KEY'
-  },
-  body: JSON.stringify({
-    prompt: 'What is the meaning of life?',
-    temperature: 0.5
-  })
+const endpoint = "https://api.openai.com/v1/engines/davinci-codex/completions";
+const prompt = "codigo autolisp para criar linhas simples ?";
+
+
+const headers = {
+  "Content-Type": "application/json",
+  "Authorization": `Bearer ${apiKey}`
+};
+
+const data = {
+  prompt: prompt,
+  max_tokens: 2048,
+  temperature: 0.5
+};
+
+fetch(endpoint, {
+  method: "POST",
+  headers: headers,
+  body: JSON.stringify(data)
 })
-.then(response => response.json())
-.then(data => {
-  console.log(data.choices[0].text);
-})
-.catch(error => {
-  console.error('Error:', error);
-});
+  .then((response) => response.json())
+  .then((json) => {
+    var pegando = json.choices[0].text;
+    console.log(pegando);
+  });
